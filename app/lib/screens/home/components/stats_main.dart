@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:plant_app/screens/stats/assist_stats.dart';
+import 'package:plant_app/screens/stats/details_stats.dart';
 import 'package:plant_app/screens/stats/classificacao_stats.dart';
-import 'package:plant_app/screens/stats/defesa_stats.dart';
-import 'package:plant_app/screens/stats/desarmes_stats.dart';
-import 'package:plant_app/screens/stats/gols_stats.dart';
 
 import '../../../constants.dart';
 
@@ -36,7 +33,7 @@ class StatsMain extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => GolsStats(),
+                  builder: (context) => DetailsStats(nome: "Gols", endpoint: "https://futliveserver.azurewebsites.net/Stats/artilheiros"),
                 ),
               );
             },
@@ -48,7 +45,7 @@ class StatsMain extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => AssistStats(),
+                  builder: (context) => DetailsStats(nome: "Assistências", endpoint: "https://futliveserver.azurewebsites.net/Stats/garçons"),
                 ),
               );
             },
@@ -60,7 +57,7 @@ class StatsMain extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => DefesaStats(),
+                  builder: (context) => DetailsStats(nome: "Defesas", endpoint: "https://futliveserver.azurewebsites.net/Stats/defesas"),
                 ),
               );
             },
@@ -72,7 +69,7 @@ class StatsMain extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => DesarmesStats(),
+                  builder: (context) => DetailsStats(nome: "Desarmes", endpoint: "https://futliveserver.azurewebsites.net/Stats/desarmes"),
                 ),
               );
             },

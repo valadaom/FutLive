@@ -3,24 +3,25 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class DefesaStats extends StatefulWidget {
-  const DefesaStats({Key key}) : super(key: key);
+class DetailsStats extends StatefulWidget {
+  final String nome, endpoint;
+  const DetailsStats({Key key, this.nome, this.endpoint}) : super(key: key);
 
   @override
-  _DefesaStats createState() => _DefesaStats();
+  _DetailsStats createState() => _DetailsStats();
 }
 
-class _DefesaStats extends State<DefesaStats>{
+class _DetailsStats extends State<DetailsStats>{
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green[900],
-        title: Text('Defesas'),
+        title: Text(widget.nome),
       ),
       body: FutureBuilder<List>(
-        future: getArtilheiros(),
+        future: getStats(widget.endpoint),
         builder: (context, snapshot){
           if (snapshot.hasError){
             return Center(
@@ -51,8 +52,8 @@ class _DefesaStats extends State<DefesaStats>{
   }
 }
 
-Future<List> getArtilheiros() async {
-  var response = await http.get(Uri.parse("https://futliveserver.azurewebsites.net/Stats/defesas"));
+Future<List> getStats(String endpoint) async {
+  var response = await http.get(Uri.parse(endpoint));
   if (response.statusCode == 200){
     return jsonDecode(utf8.decode(response.bodyBytes));
   }else{

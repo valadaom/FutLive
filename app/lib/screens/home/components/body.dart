@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:plant_app/constants.dart';
 import 'package:plant_app/screens/home/components/all_next_games.dart';
 import 'package:plant_app/screens/home/components/all_recent_games.dart';
+import 'package:plant_app/screens/home/components/all_stats.dart';
 
 import 'stats_main.dart';
 import 'header_with_seachbox.dart';
@@ -45,7 +46,14 @@ class Body extends StatelessWidget {
             );
           }),
           NextGames(),
-          TitleWithMoreBtn(title: "Estatísticas", press: () {}),
+          TitleWithMoreBtn(title: "Estatísticas", press: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AllStats(),
+              ),
+            );
+          }),
           StatsMain(),
           SizedBox(height: kDefaultPadding),
         ],

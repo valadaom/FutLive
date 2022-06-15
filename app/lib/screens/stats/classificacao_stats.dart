@@ -31,19 +31,19 @@ class _ClassificacaoStats extends State<ClassificacaoStats>{
             return ListView.builder(
                 itemCount: snapshot.data.length,
                 itemBuilder: (context, i){
-              return ListTile(
-                leading: CircleAvatar(
-                  backgroundColor: Colors.transparent,
-                  backgroundImage: NetworkImage(snapshot.data[i]['clube_image']),
-                ),
-                title: Text(snapshot.data[i]['clube_nome']),
-                trailing: SizedBox(
-                  width: 50,
-                  child: Text((snapshot.data[i]['clube_posicao'].toString()),
-                    style: Theme.of(context).textTheme.headline6,
-                )),
-              );
-            });
+                  return ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Colors.transparent,
+                      backgroundImage: NetworkImage(snapshot.data[i]['clube_image']),
+                    ),
+                    title: Text(snapshot.data[i]['clube_nome']),
+                    trailing: SizedBox(
+                        width: 50,
+                        child: Text((snapshot.data[i]['clube_posicao'].toString()),
+                          style: Theme.of(context).textTheme.headline6,
+                        )),
+                  );
+                });
           }
           return Center(
             child: CircularProgressIndicator(),
