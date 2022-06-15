@@ -9,7 +9,6 @@ import 'header_with_seachbox.dart';
 import 'recent_games.dart';
 import 'next_games.dart';
 import 'title_with_more_bbtn.dart';
-import 'recomend_camps.dart';
 
 class Body extends StatelessWidget {
   const Body({
@@ -28,7 +27,7 @@ class Body extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           HeaderWithSearchBox(size: size, username: username),
-          TitleWithMoreBtn(title: "Últimos jogos", press: () {
+          TitleWithMoreBtn(title: "Rodada anterior", press: () {
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -37,7 +36,7 @@ class Body extends StatelessWidget {
             );
           }),
           RecentGames(),
-          TitleWithMoreBtn(title: "Próximos jogos", press: () {
+          TitleWithMoreBtn(title: "Rodada atual", press: () {
             Navigator.push(
               context,
               MaterialPageRoute(

@@ -164,8 +164,19 @@ class _SignupPageState extends State<SignupPage>{
                           builder: (context) => LoginPage(),
                         ),
                       );
+                      return ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                              behavior: SnackBarBehavior.floating,
+                              content: Text("User created successfully"))
+
+                      );
                     }else {
-                      return "Erro";
+                      return ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                              behavior: SnackBarBehavior.floating,
+                              content: Text("Email or password is not correct."))
+
+                      );
                     }
                   },
                 ),

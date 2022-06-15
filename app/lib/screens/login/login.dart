@@ -10,7 +10,8 @@ class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
 }
-class _LoginPageState extends State<LoginPage>{
+
+class _LoginPageState extends State<LoginPage> {
   TextEditingController _email = TextEditingController();
   TextEditingController _password = TextEditingController();
 
@@ -89,10 +90,7 @@ class _LoginPageState extends State<LoginPage>{
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
-                  stops: [
-                    0.3,
-                    1
-                  ],
+                  stops: [0.3, 1],
                   colors: [
                     Color(0xFF1B5E20),
                     Color(0xFFFFEA00),
@@ -118,8 +116,8 @@ class _LoginPageState extends State<LoginPage>{
                       ),
                       Container(
                         child: SizedBox(
-                          child: Image.asset(
-                              "assets/images/bola-de-futebol.png"),
+                          child:
+                              Image.asset("assets/images/bola-de-futebol.png"),
                           height: 28,
                           width: 28,
                         ),
@@ -129,15 +127,21 @@ class _LoginPageState extends State<LoginPage>{
                   onPressed: () async {
                     var response = await Login(_email.text, _password.text);
                     print(response);
-                    if (response['status'] == "Success"){
+                    if (response['status'] == "Success") {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => HomeScreen(username: response['name']),
+                          builder: (context) =>
+                              HomeScreen(username: response['name']),
                         ),
                       );
-                  }else {
-                      return "Erro";
+                    } else {
+                      return ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          behavior: SnackBarBehavior.floating,
+                            content: Text("Email or password is not correct."))
+
+                      );
                     }
                   },
                 ),
@@ -208,17 +212,14 @@ class _LoginPageState extends State<LoginPage>{
     );
   }
 
-
   Future<dynamic> Login(String email, String password) async {
     final response = await http.post(
-        Uri.parse('https://futliveserver.azurewebsites.net/User/login?email='+email+'&password='+password),
-        headers: <String, String>{
-          'Content-Type': 'application/json'
-        }
-    );
+        Uri.parse('https://futliveserver.azurewebsites.net/User/login?email=' +
+            email +
+            '&password=' +
+            password),
+        headers: <String, String>{'Content-Type': 'application/json'});
     final data = json.decode(response.body);
     return data;
   }
-
-
-  }
+}
